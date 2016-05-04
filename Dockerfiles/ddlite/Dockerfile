@@ -1,6 +1,5 @@
 FROM alejandroniculescu/ddlite
-##The original ddlite container is adapted from joyvan's jupyter and contains the 
-ddlite installation amongst other components
+##The original ddlite container is adapted from joyvan's jupyter and contains the ddlite installation amongst other components
 
 
 USER root
@@ -34,6 +33,10 @@ RUN mv stanford-corenlp-full-2015-12-09 /home/jovyan/work/ddlite/parser
 
 #Just in case, curl
 RUN apt-get -qq update ; apt-get -qq -y install curl
+
+#Ugly hack to get mindtagger work ... fix the port used and get the machine IP addr from an environment variable that I specify at container start
+RUN  sed 's/socket.gethostname()/os.environ.get("MY_HOST")/' /home/jovyan/work/ddlite/ddlite_mindtagger.py | sed 's/hash(pwd.getpwuid(os.getuid()).pw_name) % 1000 + 8000/8889/' > /home/jovyan/work/ddlite/tmp
+RUN mv /home/jovyan/work/ddlite/tmp /home/jovyan/work/ddlite/ddlite_mindtagger.py 
 
 
 #things to troubleshoot / worth mentioning

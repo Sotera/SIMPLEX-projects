@@ -32,6 +32,8 @@ RUN wget -nc http://nlp.stanford.edu/software/stanford-corenlp-full-2015-12-09.z
 RUN unzip stanford-corenlp-full-2015-12-09.zip
 RUN mv stanford-corenlp-full-2015-12-09 /home/jovyan/work/ddlite/parser
 
+#Just in case, curl
+RUN apt-get -qq update ; apt-get -qq -y install curl
 
 
 #things to troubleshoot / worth mentioning

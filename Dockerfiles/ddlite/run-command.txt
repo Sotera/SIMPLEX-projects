@@ -1,0 +1,2 @@
+docker run -d --env MY_HOST="192.168.99.100" -p 8888-8889:8888-8889 ddlite_new start-notebook.sh --NotebookApp.base_url=~/work/ddlite/examples 
+

@@ -1,0 +1,16 @@
+version: '2.0'
+services:
+  data:
+    build: ./data-container
+    ports:
+    - "5010:5000"
+  snap:
+    build: ./snap-container
+    ports:
+    - "5020:5000" 
+  vis:
+    build: ./shiny-container
+    ports:
+    - "5030:5000"
+    - "32769:3838"
+
